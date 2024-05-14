@@ -1,0 +1,15 @@
+{
+  "name": "javascript-web_scraping",
+  "version": "1.0.0",
+  "description": "Javascript project from Holberton School",
+  "main": "0-readme.js",
+  "dependencies": {
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
