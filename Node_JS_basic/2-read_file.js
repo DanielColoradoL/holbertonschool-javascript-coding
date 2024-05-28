@@ -19,7 +19,7 @@ async function countStudents(path) {
     // iterate over each key and concatenate the value array
     for (const key in dict) {
       if (Object.prototype.hasOwnProperty.call(dict, key)) {
-        console.log(`Number of students in CS: ${dict[key].length}. List: ${dict[key].join(', ')}`);
+        console.log(`Number of students in ${key}}: ${dict[key].length}. List: ${dict[key].join(', ')}`);
       }
     }
   } catch (err) {
