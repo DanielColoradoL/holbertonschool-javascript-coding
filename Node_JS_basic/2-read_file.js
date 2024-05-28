@@ -3,30 +3,25 @@ const fs = require('fs').promises;
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
-
     const strArr = data.split('\n');
-    const arrStudents = [];
-    for (const student of strArr) {
-      const studentFil = student.split(',');
-      if (student) {
-        arrStudents.push({ name: studentFil[0], field: studentFil[3] });
+    strArr.shift();
+
+    console.log(`Number of students: ${strArr.length}`);
+    const dict = {};
+    // format the data
+    for (const line of strArr) {
+      const clearLine = line.split(',');
+      if (!dict[clearLine[3]]) {
+        dict[clearLine[3]] = [];
+      }
+      dict[clearLine[3]].push(clearLine[0]);
+    }
+    // iterate over each key and concatenate the value array
+    for (const key in dict) {
+      if (Object.prototype.hasOwnProperty.call(dict, key)) {
+        console.log(`Number of students in CS: ${dict[key].length}. List: ${dict[key].join(', ')}`);
       }
     }
-    arrStudents.shift();
-    // Print the total number of students
-    console.log(`Number of students: ${arrStudents.length}`);
-    const arrCs = [];
-    const arrSwe = [];
-    // For loop to filter based on field
-    for (const student of arrStudents) {
-      if (student.field === 'CS') {
-        arrCs.push(student.name);
-      } else {
-        arrSwe.push(student.name);
-      }
-    }
-    console.log(`Number of students in CS: ${arrCs.length}. List: ${arrCs.join(', ')}`);
-    console.log(`Number of students in SWE: ${arrSwe.length}. List: ${arrSwe.join(', ')}`);
   } catch (err) {
     throw new Error('Cannot load the database');
   }
