@@ -3,7 +3,7 @@ const fs = require('fs').promises;
 async function countStudents(path) {
   try {
     const data = await fs.readFile(path, 'utf8');
-    const strArr = data.split('\n');
+    const strArr = data.trim().split('\n');
     strArr.shift();
 
     console.log(`Number of students: ${strArr.length}`);
