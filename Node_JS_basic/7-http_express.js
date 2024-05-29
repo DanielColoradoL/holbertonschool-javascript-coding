@@ -14,7 +14,7 @@ app.get('/students', (req, res) => {
   // Task 2
   fs.readFile(filePath, 'utf8', (error, data) => {
     if (error) {
-      throw new Error('Cannot load the database');
+      res.status(500).send(`This is the list of our students\n${error.message}`);
     } else {
       const strArr = data.trim().split('\n');
       strArr.shift();
